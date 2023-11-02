@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Nautical Maps</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container" data-chart="0">
+		<div class="grain"></div>
+
+		<!-- UI -->
+		<div class="button btn-info">
+			<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.1"/></svg>
+		</div>
+		<div class="button btn-chart" onclick="toggleChart()">
+			<svg viewBox="0 0 24 24"><rect x="1.355" y="3.391" width="10.145" height="5.073"/><rect x="12.5" y="3.391" width="10.145" height="5.073"/><rect x="1.355" y="9.464" width="10.145" height="5.073"/><rect x="12.5" y="9.464" width="10.145" height="5.073"/><rect x="1.355" y="15.536" width="10.145" height="5.073"/><rect x="12.5" y="15.536" width="10.145" height="5.073"/></svg>
+		</div>
+		<div class="button rot-left" onclick="rotate('left')">
+			<svg viewBox="0 0 24 24"><path d="M7,0L2.8,21.2L24,17L7,0z"/></svg>
+		</div>
+		<div class="button rot-right" onclick="rotate('right')">
+			<svg viewBox="0 0 24 24"><path d="M0,17l21.2,4.2L17,0L0,17z"/></svg>
+		</div>
+		<div class="button arr arr-up" onclick="move('up')" data-active="0">
+			<svg viewBox="0 0 24 24"><path d="M0,21L12,3l12,18H0z"/></svg>
+		</div>
+		<div class="button arr arr-right" onclick="move('right')">
+			<svg viewBox="0 0 24 24"><path d="M3,24l18-12L3,0V24z"/></svg>
+		</div>
+		<div class="button arr arr-down" onclick="move('down')">
+			<svg viewBox="0 0 24 24"><path d="M0,3l12,18L24,3H0z"/></svg>
+		</div>
+		<div class="button arr arr-left" onclick="move('left')" data-active="0">
+			<svg viewBox="0 0 24 24"><path d="M21,24L3,12L21,0V24z"/></svg>
+		</div>
+
+		<!-- Chart -->
+		<div class="chart">
+			<div id="chart1-1" class="chart-cell" data-active="1" onclick="moveToCell(1,1)"></div>
+			<div id="chart2-1" class="chart-cell" data-active="0" onclick="moveToCell(2,1)"></div>
+			<div id="chart3-1" class="chart-cell" data-active="0" onclick="moveToCell(3,1)"></div>
+			<div id="chart4-1" class="chart-cell" data-active="0" onclick="moveToCell(4,1)"></div>
+			<div id="chart1-2" class="chart-cell" data-active="0" onclick="moveToCell(1,2)"></div>
+			<div id="chart2-2" class="chart-cell" data-active="0" onclick="moveToCell(2,2)"></div>
+			<div id="chart3-2" class="chart-cell" data-active="0" onclick="moveToCell(3,2)"></div>
+			<div id="chart4-2" class="chart-cell" data-active="0" onclick="moveToCell(4,2)"></div>
+			<div id="chart1-3" class="chart-cell" data-active="0" onclick="moveToCell(1,3)"></div>
+			<div id="chart2-3" class="chart-cell" data-active="0" onclick="moveToCell(2,3)"></div>
+			<div id="chart3-3" class="chart-cell" data-active="0" onclick="moveToCell(3,3)"></div>
+			<div id="chart4-3" class="chart-cell" data-active="0" onclick="moveToCell(4,3)"></div>
+			<div id="chart1-4" class="chart-cell" data-active="0" onclick="moveToCell(1,4)"></div>
+			<div id="chart2-4" class="chart-cell" data-active="0" onclick="moveToCell(2,4)"></div>
+			<div id="chart3-4" class="chart-cell" data-active="0" onclick="moveToCell(3,4)"></div>
+			<div id="chart4-4" class="chart-cell" data-active="0" onclick="moveToCell(4,4)"></div>
+			<div id="chart1-5" class="chart-cell" data-active="0" onclick="moveToCell(1,5)"></div>
+			<div id="chart2-5" class="chart-cell" data-active="0" onclick="moveToCell(2,5)"></div>
+			<div id="chart3-5" class="chart-cell" data-active="0" onclick="moveToCell(3,5)"></div>
+			<div id="chart4-5" class="chart-cell" data-active="0" onclick="moveToCell(4,5)"></div>
+			<div id="chart1-6" class="chart-cell" data-active="0" onclick="moveToCell(1,6)"></div>
+			<div id="chart2-6" class="chart-cell" data-active="0" onclick="moveToCell(2,6)"></div>
+			<div id="chart3-6" class="chart-cell" data-active="0" onclick="moveToCell(3,6)"></div>
+			<div id="chart4-6" class="chart-cell" data-active="0" onclick="moveToCell(4,6)"></div>
+			<div id="chart1-7" class="chart-cell" data-active="0" onclick="moveToCell(1,7)"></div>
+			<div id="chart2-7" class="chart-cell" data-active="0" onclick="moveToCell(2,7)"></div>
+			<div id="chart3-7" class="chart-cell" data-active="0" onclick="moveToCell(3,7)"></div>
+			<div id="chart4-7" class="chart-cell" data-active="0" onclick="moveToCell(4,7)"></div>
+			<div id="chart1-8" class="chart-cell" data-active="0" onclick="moveToCell(1,8)"></div>
+			<div id="chart2-8" class="chart-cell" data-active="0" onclick="moveToCell(2,8)"></div>
+			<div id="chart3-8" class="chart-cell" data-active="0" onclick="moveToCell(3,8)"></div>
+			<div id="chart4-8" class="chart-cell" data-active="0" onclick="moveToCell(4,8)"></div>
+		</div>
+
+		<!-- Content -->
+		<div class="map">
+			<div class="map-imgs">
+				<img src="assets/maps/1-1.svg" id="map1-1" data-active="1">
+				<img src="assets/maps/2-1.svg" id="map2-1" data-active="0">
+				<img src="assets/maps/3-1.svg" id="map3-1" data-active="0">
+				<img src="assets/maps/4-1.svg" id="map4-1" data-active="0">
+				<img src="assets/maps/1-2.svg" id="map1-2" data-active="0">
+				<img src="assets/maps/2-2.svg" id="map2-2" data-active="0">
+				<img src="assets/maps/3-2.svg" id="map3-2" data-active="0">
+				<img src="assets/maps/4-2.svg" id="map4-2" data-active="0">
+				<img src="assets/maps/1-3.svg" id="map1-3" data-active="0">
+				<img src="assets/maps/2-3.svg" id="map2-3" data-active="0">
+				<img src="assets/maps/3-3.svg" id="map3-3" data-active="0">
+				<img src="assets/maps/4-3.svg" id="map4-3" data-active="0">
+				<img src="assets/maps/1-4.svg" id="map1-4" data-active="0">
+				<img src="assets/maps/2-4.svg" id="map2-4" data-active="0">
+				<img src="assets/maps/3-4.svg" id="map3-4" data-active="0">
+				<img src="assets/maps/4-4.svg" id="map4-4" data-active="0">
+				<img src="assets/maps/1-5.svg" id="map1-5" data-active="0">
+				<img src="assets/maps/2-5.svg" id="map2-5" data-active="0">
+				<img src="assets/maps/3-5.svg" id="map3-5" data-active="0">
+				<img src="assets/maps/4-5.svg" id="map4-5" data-active="0">
+				<img src="assets/maps/1-6.svg" id="map1-6" data-active="0">
+				<img src="assets/maps/2-6.svg" id="map2-6" data-active="0">
+				<img src="assets/maps/3-6.svg" id="map3-6" data-active="0">
+				<img src="assets/maps/4-6.svg" id="map4-6" data-active="0">
+				<img src="assets/maps/1-7.svg" id="map1-7" data-active="0">
+				<img src="assets/maps/2-7.svg" id="map2-7" data-active="0">
+				<img src="assets/maps/3-7.svg" id="map3-7" data-active="0">
+				<img src="assets/maps/4-7.svg" id="map4-7" data-active="0">
+				<img src="assets/maps/1-8.svg" id="map1-8" data-active="0">
+				<img src="assets/maps/2-8.svg" id="map2-8" data-active="0">
+				<img src="assets/maps/3-8.svg" id="map3-8" data-active="0">
+				<img src="assets/maps/4-8.svg" id="map4-8" data-active="0">
+			</div>
+		</div>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
