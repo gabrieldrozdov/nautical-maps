@@ -14,33 +14,6 @@ function move(dir) {
 		return;
 	}
 
-	// Fix direction for rotation
-	if (bodyRotation == 3) {
-		switch (dir) {
-			case 'left': dir = 'down'; break;
-			case 'up': dir = 'left'; break;
-			case 'right': dir = 'up'; break;
-			case 'down': dir = 'right'; break;
-			default: break;
-		}
-	} else if (bodyRotation == 2) {
-		switch (dir) {
-			case 'left': dir = 'right'; break;
-			case 'up': dir = 'down'; break;
-			case 'right': dir = 'left'; break;
-			case 'down': dir = 'up'; break;
-			default: break;
-		}
-	} else if (bodyRotation == 1) {
-		switch (dir) {
-			case 'left': dir = 'up'; break;
-			case 'up': dir = 'right'; break;
-			case 'right': dir = 'down'; break;
-			case 'down': dir = 'left'; break;
-			default: break;
-		}
-	}
-
 	// Bounds
 	if (dir == 'up' && currentFold[1] == 1) {
 		return
@@ -211,13 +184,13 @@ function moveToCell(col, row) {
 body.addEventListener('keydown', detectKey);
 function detectKey(e) {
 	if (e.key == 'ArrowUp' || e.key == "w" || e.key == "W") {
-		move('up');
+		move(fixDirection('up'));
 	} else if (e.key == 'ArrowRight' || e.key == "d" || e.key == "D") {
-		move('right');
+		move(fixDirection('right'));
 	} else if (e.key == 'ArrowDown' || e.key == "s" || e.key == "S") {
-		move('down');
+		move(fixDirection('down'));
 	} else if (e.key == 'ArrowLeft' || e.key == "a" || e.key == "A") {
-		move('left');
+		move(fixDirection('left'));
 	}
 }
 
@@ -243,4 +216,33 @@ function rotate(dir) {
 	body.dataset.rotation = bodyRotation;
 	mapImgs.style.transform = `rotate(${rotation}deg)`;
 	chart.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+}
+
+function fixDirection(dir) {
+	if (bodyRotation == 3) {
+		switch (dir) {
+			case 'left': dir = 'down'; break;
+			case 'up': dir = 'left'; break;
+			case 'right': dir = 'up'; break;
+			case 'down': dir = 'right'; break;
+			default: break;
+		}
+	} else if (bodyRotation == 2) {
+		switch (dir) {
+			case 'left': dir = 'right'; break;
+			case 'up': dir = 'down'; break;
+			case 'right': dir = 'left'; break;
+			case 'down': dir = 'up'; break;
+			default: break;
+		}
+	} else if (bodyRotation == 1) {
+		switch (dir) {
+			case 'left': dir = 'up'; break;
+			case 'up': dir = 'right'; break;
+			case 'right': dir = 'down'; break;
+			case 'down': dir = 'left'; break;
+			default: break;
+		}
+	}
+	return dir
 }
