@@ -407,3 +407,39 @@ body[data-rotation="1"] .arr-down {
 		max-height: 100%;
 	}
 }
+
+/* Info */
+.info {
+	position: fixed;
+	width: 280px;
+	border: 1px solid black;
+	background-color: #eee;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 99999999;
+	padding: 1.2em 2.4em;
+	text-align: center;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	text-transform: uppercase;
+	font-size: 14px;
+	line-height: 1.2em;
+	letter-spacing: 0.05em;
+}
+.info[data-active="0"] {
+	display: none;
+}
+.info h1 {
+	font-size: 14px;
+	line-height: 1.2em;
+	margin-bottom: 1.2em;
+	margin-top: 1.2em;
+}
+.info p {
+	margin-bottom: 1.2em;
+}
+.info a {
+	text-decoration-thickness: 1px;
+	text-underline-offset: .2em;
+	color: black;
+}

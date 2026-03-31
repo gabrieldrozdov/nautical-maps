@@ -9,6 +9,7 @@ let map = document.querySelector('.map');
 let mapImg = map.querySelector('img');
 let wait = false;
 function move(dir) {
+	closeInfo();
 
 	if (wait == true) {
 		return;
@@ -154,6 +155,7 @@ function move(dir) {
 
 // Automatically move to cell
 function toggleChart() {
+	closeInfo();
 	if (parseInt(container.dataset.chart) == 1) {
 		container.dataset.chart = 0;
 	} else {
@@ -164,6 +166,7 @@ function closeChart() {
 	container.dataset.chart = 0;
 }
 function moveToCell(col, row) {
+	closeInfo();
 	closeChart();
 	if (col > currentFold[0]) {
 		move('right');
@@ -183,6 +186,7 @@ function moveToCell(col, row) {
 // Keyboard input
 body.addEventListener('keydown', detectKey);
 function detectKey(e) {
+	closeInfo();
 	if (e.key == 'ArrowUp' || e.key == "w" || e.key == "W") {
 		move(fixDirection('up'));
 	} else if (e.key == 'ArrowRight' || e.key == "d" || e.key == "D") {
@@ -200,6 +204,7 @@ let chart = document.querySelector('.chart');
 let rotation = 0;
 let bodyRotation = 0;
 function rotate(dir) {
+	closeInfo();
 	if (dir == 'left') {
 		rotation -= 90;
 		bodyRotation++;
@@ -245,4 +250,18 @@ function fixDirection(dir) {
 		}
 	}
 	return dir
+}
+
+function toggleInfo() {
+	let info = document.querySelector('.info');
+	let state = parseInt(info.dataset.active);
+	if (state == 0) {
+		info.dataset.active = 1;
+	} else {
+		info.dataset.active = 0;
+	}
+}
+function closeInfo() {
+	let info = document.querySelector('.info');
+	info.dataset.active = 0;
 }
